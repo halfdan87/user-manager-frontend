@@ -1,0 +1,44 @@
+<div class="jumbotron d-flex align-items-center">
+  <div class="container">
+    <h2>User list</h2>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">login</th>
+        <th scope="col">email</th>
+        <th scope="col">first name</th>
+        <th scope="col">last name</th>
+        <th scope="col">birth date</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users" [class.flash]="updatedUser === user.id">
+        <th scope="row">{{user.id}}</th>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.birthDate}}</td>
+        <td>
+          <button [routerLink]="['/edit']" [queryParams]="{userId: user.id}" class="btn btn-outline-info">
+            <i class="fas fa-user-edit" aria-hidden="true"></i>
+          </button>
+          <button (click)="deleteUser(user.id)" type="button" class="btn btn-outline-danger">
+            <i class="fas fa-user-times" aria-hidden="true"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="clearfix">
+      <button [routerLink]="['/edit']" type="button" class="btn btn-primary">
+        <i class="fas fa-user-plus"></i>
+        Add
+      </button>
+    </div>
+  </div>
+</div>

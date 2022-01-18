@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+@-webkit-keyframes flash {
+  from { background-color: blue; }
+  to { background-color: inherit; }
+}
+@-moz-keyframes flash {
+  from { background-color: blue; }
+  to { background-color: inherit; }
+}
+@-o-keyframes flash {
+  from { background-color: blue; }
+  to { background-color: inherit; }
+}
+@keyframes flash {
+  from { background-color: blue; }
+  to { background-color: inherit; }
+}
+.flash {
+  -webkit-animation: flash 1s; /* Safari 4+ */
+  -moz-animation:    flash 1s; /* Fx 5+ */
+  -o-animation:      flash 1s; /* Opera 12+ */
+  animation:         flash 1s; /* IE 10+ */
+}

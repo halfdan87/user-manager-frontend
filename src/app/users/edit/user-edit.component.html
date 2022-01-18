@@ -1,0 +1,99 @@
+<div class="jumbotron d-flex align-items-center">
+  <div class="container">
+
+    <div *ngIf="serverError" class="alert alert-danger" role="alert">
+      Something went wrong :( [{{serverError}}]
+    </div>
+
+    <h2>
+      <div *ngIf="userId; then updateUserLabelBlock else addUserLabelBlock"></div>
+      <ng-template #updateUserLabelBlock>Update user {{ user.username }}</ng-template>
+      <ng-template #addUserLabelBlock>Add new user</ng-template>
+    </h2>
+
+
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input #username="ngModel" type="text"
+               class="form-control"
+               [class.is-invalid]="username.invalid && (username.dirty || username.touched)"
+               id="username"
+               name="username"
+               required
+               placeholder="username"
+               minlength="5"
+               maxlength="16"
+               [(ngModel)]="user.username">
+        <div class="invalid-feedback">
+          Username should have 5 to 16 characters.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text"
+               class="form-control"
+               id="firstName"
+               name="firstName"
+               placeholder="first name"
+               maxlength="50"
+               [(ngModel)]="user.firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input type="text"
+               class="form-control"
+               id="lastName"
+               name="lastName"
+               placeholder="last name"
+               maxlength="50"
+               [(ngModel)]="user.lastName">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email"
+               class="form-control"
+               #email="ngModel"
+               [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
+               id="email"
+               name="email"
+               required
+               email
+               placeholder="email"
+               [(ngModel)]="user.email">
+        <div class="invalid-feedback">
+          This field is required and should be a valid e-mail address.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password"
+               class="form-control"
+               id="password"
+               name="password"
+               placeholder="***** ***"
+               [(ngModel)]="user.password">
+      </div>
+      <div class="form-group">
+        <label for="birthDate">Birth date</label>
+        <input type="date"
+               class="form-control"
+               id="birthDate"
+               name="birthDate"
+               required
+               placeholder="birthDate"
+               [(ngModel)]="user.birthDate">
+      </div>
+      <div class="clearfix">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!userForm.form.valid"
+        >
+          <i class="fas fa-save"></i>
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
